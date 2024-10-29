@@ -10,7 +10,9 @@ public class TextBoxTest {
 
     @BeforeAll
     static void beforeAll() {
+        Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
+        Configuration.pageLoadTimeout = 600000;
     }
 
     @Test
@@ -24,4 +26,5 @@ public class TextBoxTest {
         $("#output").shouldHave(text("Jon Smith"), text("JSmith@gmail.ru"),
                 text("New York, Lenina str. 17"), text("Chicago, Mira str. 23"));
     }
+
 }
