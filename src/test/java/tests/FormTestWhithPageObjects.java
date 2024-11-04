@@ -1,36 +1,23 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pages.RegistratioinPage;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class FormTestWhithPageObjects {
-
-    RegistratioinPage registratioinPage = new RegistratioinPage();
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadTimeout = 600000;
-//        Configuration.holdBrowserOpen = true;
-    }
+public class FormTestWhithPageObjects extends TestBace {
 
     @Test
     void formTest() {
 
-        registratioinPage.openPage();
-        registratioinPage.setFirstName("John");
-        registratioinPage.setSecondName("Smith");
-        registratioinPage.setEmail("JSmith@gmail.ru");
-        registratioinPage.setPhoneNumber("9991112233");
-        registratioinPage.setText("#currentAddress", "New York, Lenina str. 17");
+        registratioinPage.openPage()
+                .setFirstName("John")
+                .setSecondName("Smith")
+                .setEmail("JSmith@gmail.ru")
+                .setPhoneNumber("9991112233")
+                .setText("#currentAddress", "New York, Lenina str. 17");
 
         $("#gender-radio-2").parent().click();
         $("#dateOfBirthInput").click();

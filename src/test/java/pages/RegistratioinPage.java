@@ -11,28 +11,34 @@ public class RegistratioinPage {
     private SelenideElement firstNameInput = $("[id=firstName]");
     private SelenideElement secondNameInput = $("[id=lastName]");
 
-    public void openPage() {
+    public RegistratioinPage openPage() {
         open("https://demoqa.com/automation-practice-form");
         $(".practice-from-wrapper").shouldHave(text(titleText));
         executeJavaScript("$('footer').remove()");
+        return this;
     }
 
-    public void setText(String nameClass, String value) {
+    public RegistratioinPage setText(String nameClass, String value) {
         $(nameClass).setValue(value);
+        return this;
     }
-    public void setFirstName( String value) {
+    public RegistratioinPage setFirstName( String value) {
         firstNameInput.setValue(value);
+        return this;
     }
 
-    public void setSecondName( String value) {
+    public RegistratioinPage setSecondName( String value) {
         secondNameInput.setValue(value);
+        return this;
     }
 
-    public void setEmail( String value) {
+    public RegistratioinPage setEmail( String value) {
         $("#userEmail").setValue(value);
+        return this;
     }
 
-    public void setPhoneNumber( String value) {
+    public RegistratioinPage setPhoneNumber( String value) {
         $("[id=userNumber]").setValue(value);
+        return this;
     }
 }
