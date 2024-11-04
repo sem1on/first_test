@@ -1,11 +1,16 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
+import pages.components.RegistrationModal;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistratioinPage {
+
+    CalendarComponent calendarComponent = new CalendarComponent();
+    RegistrationModal registrationModal = new RegistrationModal();
 
     private final String titleText = "Student Registration Form";
     private SelenideElement firstNameInput = $("[id=firstName]");
@@ -39,6 +44,22 @@ public class RegistratioinPage {
 
     public RegistratioinPage setPhoneNumber( String value) {
         $("[id=userNumber]").setValue(value);
+        return this;
+    }
+
+    public RegistratioinPage setBirthDate (String day, String month, String year) {
+        $("#dateOfBirthInput").click();
+        calendarComponent.setDate(day, month, year);
+        return this;
+    }
+
+    public RegistratioinPage setVerifyModal () {
+        registrationModal.verifyModalAppers();
+        return this;
+    }
+
+    public RegistratioinPage setVerifyResult (String key, String value) {
+        registrationModal.verifyResult(key, value);
         return this;
     }
 }
