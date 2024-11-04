@@ -16,7 +16,7 @@ public class FormTestWhithPageObjects extends TestBace {
                 .setBirthDate("30", "October", "1999")
                 .setGender()
                 .setSubject("maths")
-                .setHobbies("Sport")
+                .setHobbies("Sports")
                 .loadPicture("21.png")
                 .setStateCity("Haryana", "Karnal")
                 .clickButton("submit");

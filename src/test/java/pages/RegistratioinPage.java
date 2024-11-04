@@ -23,7 +23,7 @@ public class RegistratioinPage {
 
     public RegistratioinPage openPage() {
         open("https://demoqa.com/automation-practice-form");
-        $(".practice-from-wrapper").shouldHave(text(titleText));
+        $(".practice-form-wrapper").shouldHave(text(titleText));
         executeJavaScript("$('footer').remove()");
         return this;
     }

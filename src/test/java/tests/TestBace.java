@@ -12,6 +12,6 @@ public class TestBace {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadTimeout = 600000;
-//        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;
     }
 }
