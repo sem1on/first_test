@@ -1,13 +1,18 @@
+package tests;
+
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistratioinPage;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class FormTest {
+public class FormTestWhithPageObjects {
+
+    RegistratioinPage registratioinPage = new RegistratioinPage();
 
     @BeforeAll
     static void beforeAll() {
@@ -19,13 +24,15 @@ public class FormTest {
 
     @Test
     void formTest() {
-        open("https://demoqa.com/automation-practice-form");
-        executeJavaScript("$('footer').remove()");
-        $("[id=firstName]").setValue("John");
-        $("[id=lastName]").setValue("Smith");
-        $("#userEmail").setValue("JSmith@gmail.ru");
+
+        registratioinPage.openPage();
+        registratioinPage.setFirstName("John");
+        registratioinPage.setSecondName("Smith");
+        registratioinPage.setEmail("JSmith@gmail.ru");
+        registratioinPage.setPhoneNumber("9991112233");
+        registratioinPage.setText("#currentAddress", "New York, Lenina str. 17");
+
         $("#gender-radio-2").parent().click();
-        $("[id=userNumber]").setValue("9991112233");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("October");
         $(".react-datepicker__year-select").selectOptionByValue("1999");
@@ -34,7 +41,6 @@ public class FormTest {
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#uploadPicture").uploadFromClasspath("21.png");
 //        $("uploadPicture").uploadFile(new File("src/test/resources/21.png"));
-        $("#currentAddress").setValue("New York, Lenina str. 17");
         $("#state").click();
         $("#stateCity-wrapper").$(byText("Haryana")).click();
         $("#city").click();
