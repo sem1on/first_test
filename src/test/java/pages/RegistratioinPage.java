@@ -1,16 +1,21 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.ButtonClick;
 import pages.components.CalendarComponent;
 import pages.components.RegistrationModal;
+import pages.components.SelectStateAndCity;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistratioinPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
     RegistrationModal registrationModal = new RegistrationModal();
+    SelectStateAndCity selectStateAndCity = new SelectStateAndCity();
+    ButtonClick buttonClick = new ButtonClick();
 
     private final String titleText = "Student Registration Form";
     private SelenideElement firstNameInput = $("[id=firstName]");
@@ -60,6 +65,37 @@ public class RegistratioinPage {
 
     public RegistratioinPage setVerifyResult (String key, String value) {
         registrationModal.verifyResult(key, value);
+        return this;
+    }
+
+    public RegistratioinPage setGender() {
+        $("#gender-radio-2").parent().click();
+        return this;
+    }
+
+    public RegistratioinPage setSubject(String value) {
+        $("#subjectsInput").setValue(value).pressEnter();
+        return this;
+    }
+
+    public RegistratioinPage setHobbies(String value) {
+        $("#hobbiesWrapper").$(byText(value)).click();
+        return this;
+    }
+
+    public RegistratioinPage loadPicture(String pictureName) {
+        $("#uploadPicture").uploadFromClasspath(pictureName);
+//        $("uploadPicture").uploadFile(new File("src/test/resources/21.png"));
+        return this;
+    }
+
+    public RegistratioinPage setStateCity(String state, String city) {
+        selectStateAndCity.setStateCity(state, city);
+        return this;
+    }
+
+    public RegistratioinPage clickButton(String idButton){
+        buttonClick.buttonClick(idButton);
         return this;
     }
 }

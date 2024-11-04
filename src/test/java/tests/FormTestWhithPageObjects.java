@@ -2,33 +2,25 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
 public class FormTestWhithPageObjects extends TestBace {
 
     @Test
     void formTest() {
-
+// Заполнение формы
         registratioinPage.openPage()
                 .setFirstName("John")
                 .setSecondName("Smith")
                 .setEmail("JSmith@gmail.ru")
                 .setPhoneNumber("9991112233")
                 .setText("#currentAddress", "New York, Lenina str. 17")
-                .setBirthDate("30", "October", "1999");
-
-        $("#gender-radio-2").parent().click();
-        $("#subjectsInput").setValue("maths").pressEnter();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("21.png");
-//        $("uploadPicture").uploadFile(new File("src/test/resources/21.png"));
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("Haryana")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Karnal")).click();
-        $("[id=submit]").click();
-
+                .setBirthDate("30", "October", "1999")
+                .setGender()
+                .setSubject("maths")
+                .setHobbies("Sport")
+                .loadPicture("21.png")
+                .setStateCity("Haryana", "Karnal")
+                .clickButton("submit");
+// Проверка прохождения теста
         registratioinPage.setVerifyModal()
                 .setVerifyResult("Student Name", "John Smith")
                 .setVerifyResult("Student Email", "JSmith@gmail.ru")
