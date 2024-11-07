@@ -2,16 +2,20 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import static utils.RandomUtils.getRandomString;
+import static utils.RandomUtils.*;
 
 public class FormTestWhithRandonUtils extends TestBace {
 
     @Test
     void formTest() {
 
+        String[] months = {"May", "October", "September", "August", "July"};
         String userName = getRandomString(10),
                 lastName = getRandomString(10),
-                userEmail = "JSmith@gmail.ru";
+                userEmail = getRandomEmail(),
+                monthBirth = getRandomItemFromArray(months);
+
+
 // Заполнение формы
         registratioinPage.openPage()
                 .setFirstName(userName)
@@ -19,7 +23,7 @@ public class FormTestWhithRandonUtils extends TestBace {
                 .setEmail(userEmail)
                 .setPhoneNumber("9991112233")
                 .setText("#currentAddress", "New York, Lenina str. 17")
-                .setBirthDate("30", "October", "1999")
+                .setBirthDate("30", monthBirth, "1999")
                 .setGender()
                 .setSubject("maths")
                 .setHobbies("Sports")

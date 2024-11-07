@@ -21,4 +21,13 @@ public class RandomUtils {
             sd.append(AB.charAt(rnd.nextInt(AB.length())));
         return sd.toString();
     }
+
+    public static String getRandomEmail() {
+        return getRandomString(8) + "@mail.com";
+    }
+
+    public static String getRandomItemFromArray(String[] values) {
+        int index = getRandomInt(0, values.length - 1);
+        return values[index];
+    }
 }
