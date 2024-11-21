@@ -41,4 +41,16 @@ public class StepsTest {
             $(withText("#" + NUMBER)).should(Condition.exist);
         });
     }
+
+    @Test
+    public void testAnnotation() {
+        WebSteps steps = new WebSteps();
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
+        steps.openMainPage();
+        steps.searchReposetory(REPOSITORY);
+        steps.clickReposetory(REPOSITORY);
+        steps.openIssue();
+        steps.checkNumber(NUMBER);
+    }
 }
