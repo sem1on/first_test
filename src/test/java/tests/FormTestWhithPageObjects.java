@@ -1,11 +1,14 @@
 package tests;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
 
 public class FormTestWhithPageObjects extends TestBace {
 
     @Test
     void formTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
 // Заполнение формы
         registratioinPage.openPage()
                 .setFirstName("John")
