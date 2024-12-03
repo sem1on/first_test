@@ -57,8 +57,5 @@ public class FormTest {
             $(".table-responsive").shouldHave(text("John"), text("JSmith@gmail.ru"),
                     text("9991112233"));
         });
-
-
-
     }
 }
